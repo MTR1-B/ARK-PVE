@@ -3,296 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch Vụ Cho Thuê Server Game Chất Lượng Cao</title>
+    <title>Săn Kim Cương - Bấm Nhận Kim Cương Miễn Phí</title>
     <style>
-        /* Reset & Cấu hình chung */
+        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
         }
         body {
-            background-color: #0f172a;
+            background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
             color: #f8fafc;
-            line-height: 1.6;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Header / Navbar */
+        /* Header Navigation */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
-            background-color: #1e293b;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 15px 8%;
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         .logo {
             font-size: 24px;
-            font-weight: bold;
-            color: #38bdf8;
-            letter-spacing: 1px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
         }
-        .logo span {
-            color: #f43f5e;
-        }
-        nav ul {
+        .user-stats {
             display: flex;
-            list-style: none;
-            gap: 20px;
+            align-items: center;
+            gap: 15px;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 8px 16px;
+            border-radius: 30px;
+            border: 1px solid #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
-        nav a {
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #38bdf8;
-        }
-        .btn-contact {
-            background: linear-gradient(135deg, #e11d48, #f43f5e);
-            padding: 8px 18px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: opacity 0.3s;
-        }
-        .btn-contact:hover {
-            opacity: 0.9;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
-        }
-        .hero h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            color: #ffffff;
-        }
-        .hero h1 span {
-            color: #38bdf8;
-        }
-        .hero p {
+        .diamond-count {
             font-size: 18px;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 30px;
-        }
-
-        /* Features Section */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 50px 10%;
-            background-color: #162032;
-        }
-        .feature-box {
-            background-color: #1e293b;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid #334155;
-        }
-        .feature-box h3 {
+            font-weight: bold;
             color: #38bdf8;
-            margin-bottom: 10px;
-        }
-        .feature-box p {
-            color: #94a3b8;
-            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        /* Pricing Section */
-        .pricing {
-            padding: 60px 10%;
-            text-align: center;
-        }
-        .pricing h2 {
-            font-size: 32px;
-            margin-bottom: 40px;
-        }
-        .pricing-grid {
+        /* Container Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr 350px;
             gap: 30px;
-        }
-        .price-card {
-            background-color: #1e293b;
-            border: 2px solid #334155;
-            border-radius: 12px;
-            padding: 30px;
-            position: relative;
-            transition: transform 0.3s, border-color 0.3s;
-        }
-        .price-card:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-        }
-        .price-card.popular {
-            border-color: #f43f5e;
-        }
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background-color: #f43f5e;
-            color: white;
-            padding: 2px 10px;
-            font-size: 12px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-        .price-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        .price-card .price {
-            font-size: 28px;
-            color: #38bdf8;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .price-card .price span {
-            font-size: 14px;
-            color: #94a3b8;
-        }
-        .price-card ul {
-            list-style: none;
-            margin-bottom: 25px;
-            text-align: left;
-        }
-        .price-card ul li {
-            padding: 8px 0;
-            border-bottom: 1px solid #334155;
-            color: #cbd5e1;
-            font-size: 14px;
-        }
-        .btn-buy {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background-color: #38bdf8;
-            color: #0f172a;
-            font-weight: bold;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-        }
-        .btn-buy:hover {
-            background-color: #7dd3fc;
+            flex: 1;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0b1120;
-            color: #64748b;
-            font-size: 14px;
-            border-top: 1px solid #1e293b;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header Navigation -->
-    <header>
-        <div class="logo">GAME<span>HOST</span></div>
-        <nav>
-            <ul>
-                <li><a href="#home">Trang Chủ</a></li>
-                <li><a href="#features">Tính Năng</a></li>
-                <li><a href="#pricing">Bảng Giá</a></li>
-            </ul>
-        </nav>
-        <a href="#pricing" class="btn-contact">Thuê Ngay</a>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <h1>Server Game Khỏe - <span>Khống Chế Lag</span></h1>
-        <p>Cung cấp Server Game Minecraft, GTA V, CS:GO, Rust... tốc độ cao, hạ tầng Anti-DDoS cực mạnh, hỗ trợ 24/7.</p>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="feature-box">
-            <h3>⚡ Tốc Độ Cực Nhanh</h3>
-            <p>Sử dụng ổ cứng NVMe SSD siêu tốc giúp game load mượt mà, không giật lag.</p>
-        </div>
-        <div class="feature-box">
-            <h3>🛡️ Anti-DDoS Mạnh Mẽ</h3>
-            <p>Bảo vệ máy chủ của bạn khỏi các cuộc tấn công mạng nguy hiểm 24/7.</p>
-        </div>
-        <div class="feature-box">
-            <h3>🛠️ Cài Đặt 1-Click</h3>
-            <p>Khởi tạo và cài đặt các Mod, Plugin nhanh chóng qua giao diện điều khiển đơn giản.</p>
-        </div>
-        <div class="feature-box">
-            <h3>🎧 Hỗ Trợ 24/7</h3>
-            <p>Đội ngũ kỹ thuật viên giàu kinh nghiệm sẵn sàng hỗ trợ bất kể ngày đêm.</p>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <h2>Bảng Giá Chợ Server Game</h2>
-        <div class="pricing-grid">
-            
-            <!-- Gói Cơ Bản -->
-            <div class="price-card">
-                <h3>Gói Starter</h3>
-                <div class="price">150.000đ <span>/tháng</span></div>
-                <ul>
-                    <li>✔ RAM: 4 GB</li>
-                    <li>✔ CPU: 2 vCPU</li>
-                    <li>✔ SSD NVMe: 30 GB</li>
-                    <li>✔ Băng thông: Không giới hạn</li>
-                    <li>✔ Chống DDoS: Cơ bản</li>
-                </ul>
-                <a href="#" class="btn-buy">Đăng Ký</a>
-            </div>
-
-            <!-- Gói Phổ Biến -->
-            <div class="price-card popular">
-                <div class="popular-badge">PHỔ BIẾN</div>
-                <h3>Gói Pro Gamer</h3>
-                <div class="price">350.000đ <span>/tháng</span></div>
-                <ul>
-                    <li>✔ RAM: 8 GB</li>
-                    <li>✔ CPU: 4 vCPU</li>
-                    <li>✔ SSD NVMe: 60 GB</li>
-                    <li>✔ Băng thông: Không giới hạn</li>
-                    <li>✔ Chống DDoS: Cao cấp</li>
-                </ul>
-                <a href="#" class="btn-buy" style="background-color: #f43f5e; color: white;">Đăng Ký</a>
-            </div>
-
-            <!-- Gói Cao Cấp -->
-            <div class="price-card">
-                <h3>Gói Ultimate</h3>
-                <div class="price">700.000đ <span>/tháng</span></div>
-                <ul>
-                    <li>✔ RAM: 16 GB</li>
-                    <li>✔ CPU: 8 vCPU</li>
-                    <li>✔ SSD NVMe: 120 GB</li>
-                    <li>✔ Băng thông: Không giới hạn</li>
-                    <li>✔ Chống DDoS: Chuyên nghiệp</li>
-                </ul>
-                <a href="#" class="btn-buy">Đăng Ký</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 GAMEHOST. Tất cả các quyền được bảo lưu.</p>
-    </footer>
-
-</body>
-</html>
+        /* Game Section */
+        .game-card
