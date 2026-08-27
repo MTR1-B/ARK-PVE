@@ -3,75 +3,379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Săn Kim Cương - Bấm Nhận Kim Cương Miễn Phí</title>
+    <title>Aroma Coffee & Bakery - Cà Phê & Đồ Ăn Tươi Ngon</title>
     <style>
-        /* Reset & Base Styles */
+        /* Reset & Layout chung */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            user-select: none;
         }
         body {
-            background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
-            color: #f8fafc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background-color: #fdfbf7;
+            color: #4a3e3d;
+            line-height: 1.6;
         }
+        a { text-decoration: none; color: inherit; }
 
-        /* Header Navigation */
+        /* Header / Navbar */
         header {
+            background-color: #2c1810;
+            color: #fceade;
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
-            background-color: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         .logo {
             font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #38bdf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            font-weight: bold;
+            color: #d4a373;
+            letter-spacing: 1px;
         }
-        .user-stats {
+        nav ul {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(15, 23, 42, 0.6);
-            padding: 8px 16px;
-            border-radius: 30px;
-            border: 1px solid #38bdf8;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+            list-style: none;
+            gap: 25px;
         }
-        .diamond-count {
+        nav a:hover {
+            color: #d4a373;
+            transition: 0.3s;
+        }
+        .cart-icon {
+            background-color: #d4a373;
+            color: #2c1810;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(44, 24, 16, 0.7), rgba(44, 24, 16, 0.7)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80') center/cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 42px;
+            color: #faedcd;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin-bottom: 20px;
+            color: #e9edc9;
+        }
+        .btn-hero {
+            background-color: #d4a373;
+            color: #2c1810;
+            padding: 12px 28px;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+        .btn-hero:hover {
+            background-color: #fefae0;
+        }
+
+        /* Category Filter */
+        .menu-section {
+            padding: 50px 8%;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 32px;
+            color: #2c1810;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .category-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .btn-cat {
+            background-color: #e9edc9;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #2c1810;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-cat.active, .btn-cat:hover {
+            background-color: #2c1810;
+            color: #faedcd;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+            text-align: left;
+        }
+        .product-title {
             font-size: 18px;
             font-weight: bold;
-            color: #38bdf8;
+            color: #2c1810;
+            margin-bottom: 8px;
+        }
+        .product-desc {
+            font-size: 13px;
+            color: #7f7f7f;
+            margin-bottom: 15px;
+            height: 40px;
+        }
+        .product-bottom {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 5px;
+        }
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d4a373;
+        }
+        .btn-add {
+            background-color: #2c1810;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-add:hover {
+            background-color: #d4a373;
+            color: #2c1810;
         }
 
-        /* Container Layout */
-        .main-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
+        /* Footer */
+        footer {
+            background-color: #2c1810;
+            color: #faedcd;
+            padding: 40px 8% 20px;
+            margin-top: 50px;
+        }
+        .footer-content {
             display: grid;
-            grid-template-columns: 1fr 350px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
-            flex: 1;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .footer-sec h3 {
+            color: #d4a373;
+            margin-bottom: 15px;
+        }
+        .footer-sec p { font-size: 14px; margin-bottom: 8px; }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #4a3e3d;
+            padding-top: 20px;
+            font-size: 13px;
+            color: #a3928e;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">AROMA<span>.COFFEE</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Trang Chủ</a></li>
+                <li><a href="#menu">Thực Đơn</a></li>
+                <li><a href="#about">Về Chúng Tôi</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" onclick="alert('Xem danh sách món đã chọn!')">
+            🛒 Giỏ Hàng (<span id="cartCount">0</span>)
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <h1>Khởi Đầu Ngày Mới Với Tách Cà Phê Đậm Đà</h1>
+        <p>Thưởng thức cà phê rang xay nguyên chất cùng các loại bánh ngọt handmade tươi ngon mỗi ngày.</p>
+        <a href="#menu" class="btn-hero">Xem Menu Ngay</a>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Thực Đơn Hôm Nay</h2>
+        
+        <!-- Bộ lọc danh mục -->
+        <div class="category-buttons">
+            <button class="btn-cat active" onclick="filterMenu('all', this)">Tất Cả</button>
+            <button class="btn-cat" onclick="filterMenu('coffee', this)">Cà Phê</button>
+            <button class="btn-cat" onclick="filterMenu('tea', this)">Trà & Trái Cây</button>
+            <button class="btn-cat" onclick="filterMenu('bakery', this)">Đồ Ăn & Bánh Ngọt</button>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <div class="products-grid">
+            
+            <!-- Món 1 -->
+            <div class="product-card" data-category="coffee">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=500&q=80" alt="Cà Phê Sữa Đá" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Cà Phê Sữa Đá Truyền Thống</div>
+                    <div class="product-desc">Cà phê Robusta đậm đà kết hợp với sữa đặc béo ngậy.</div>
+                    <div class="product-bottom">
+                        <div class="product-price">29.000đ</div>
+                        <button class="btn-add" onclick="addToCart()">+ Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Món 2 -->
+            <div class="product-card" data-category="coffee">
+                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=500&q=80" alt="Bạc Xỉu" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Bạc Xỉu Đá</div>
+                    <div class="product-desc">Nhiều sữa ít cà phê, hương vị ngọt dịu nhẹ nhàng.</div>
+                    <div class="product-bottom">
+                        <div class="product-price">32.000đ</div>
+                        <button class="btn-add" onclick="addToCart()">+ Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Món 3 -->
+            <div class="product-card" data-category="tea">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=80" alt="Trà Đào Cam Sả" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Trà Đào Cam Sả</div>
+                    <div class="product-desc">Vị trà thanh mát kết hợp cùng đào miếng giòn ngọt và hương sả thơm.</div>
+                    <div class="product-bottom">
+                        <div class="product-price">39.000đ</div>
+                        <button class="btn-add" onclick="addToCart()">+ Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Món 4 -->
+            <div class="product-card" data-category="bakery">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=500&q=80" alt="Bánh Croissant" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Bánh Sừng Bò (Croissant)</div>
+                    <div class="product-desc">Bánh nướng xốp giòn, thơm nức mùi bơ Pháp thượng hạng.</div>
+                    <div class="product-bottom">
+                        <div class="product-price">35.000đ</div>
+                        <button class="btn-add" onclick="addToCart()">+ Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Món 5 -->
+            <div class="product-card" data-category="bakery">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=500&q=80" alt="Bánh Tiramisu" class="product-img">
+                <div class="product-info">
+                    <div class="product-title">Bánh Tiramisu Dâu</div>
+                    <div class="product-desc">Cốt bánh mềm mịn ngấm vị cà phê và kem phô mai béo ngậy.</div>
+                    <div class="product-bottom">
+                        <div class="product-price">45.000đ</div>
+                        <button class="btn-add" onclick="addToCart()">+ Thêm</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-sec">
+                <h3>AROMA COFFEE</h3>
+                <p>Nơi mang đến cho bạn những tách cà phê thơm ngon nhất và không gian thư giãn tuyệt vời.</p>
+            </div>
+            <div class="footer-sec">
+                <h3>Giờ Mở Cửa</h3>
+                <p>Thứ 2 - Thứ 6: 07:00 - 22:00</p>
+                <p>Thứ 7 - Chủ Nhật: 07:00 - 23:00</p>
+            </div>
+            <div class="footer-sec">
+                <h3>Liên Hệ</h3>
+                <p>📍 Địa chỉ: 123 Đường Cà Phê, Quận 1, TP.HCM</p>
+                <p>📞 Hotline: 0909 123 456</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 AROMA COFFEE. Tất cả các quyền được bảo lưu.
+        </div>
+    </footer>
+
+    <!-- JavaScript Xử Lý -->
+    <script>
+        let count = 0;
+
+        // Xử lý thêm vào giỏ hàng
+        function addToCart() {
+            count++;
+            document.getElementById('cartCount').innerText = count;
+            alert('Đã thêm món vào giỏ hàng thành công!');
         }
 
-        /* Game Section */
-        .game-card
+        // Lọc món ăn theo danh mục
+        function filterMenu(category, btn) {
+            // Đổi style active cho nút
+            const buttons = document.querySelectorAll('.btn-cat');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Lọc danh sách sản phẩm
+            const items = document.querySelectorAll('.product-card');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
